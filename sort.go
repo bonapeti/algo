@@ -5,6 +5,7 @@ import (
 	"time"
 	"flag"
 	"math/rand"
+	"math"
 )
 
 func trackTime(start time.Time, name string, size int) {
@@ -17,7 +18,7 @@ func insertionSort(a []int) {
 	for i := 1; i < len(a); i++ {
 		key := a[i]
 //		log.Printf("i: %d, key: %d", i, key)
-		for j := i - 1; j >= 0; j-- {
+			for j := i - 1; j >= 0; j-- {
 //			log.Printf("j: %d, a[j]: %d", j, a[j])
 			if a[j] > key {
 				a[j+1] = a[j]
@@ -31,9 +32,9 @@ func insertionSort(a []int) {
 
 func main() {
      	rand.Seed(42)
-	var sizePar = flag.Int("size", 100, "size of the array")
+	var sizePar = flag.Int("m", 100, "Magnitude")
 	flag.Parse()
-	size := *sizePar
+	size := int(math.Pow10(*sizePar))
 	a := []int{}
 	for i := 0; i < size; i++ {
 	    a = append(a, rand.Intn(size))
