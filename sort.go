@@ -30,17 +30,39 @@ func insertionSort(a []int) {
 	}
 }
 
+func randomSamples(size int)  []int {
+	rand.Seed(42)
+	a := []int{}
+	for i := 0; i < size; i++ {
+	    a = append(a, rand.Intn(size))
+	}
+	return a
+}
+
+func worstCase(size int)  []int {
+	a := []int{}
+	for i := 0; i < size; i++ {
+	    a = append(a, size - i)
+	}
+	return a
+}
+
+func bestCase(size int)  []int {
+	a := []int{}
+	for i := 0; i < size; i++ {
+	    a = append(a, i)
+	}
+	return a
+}
+
 func main() {
      	rand.Seed(42)
 	var sizePar = flag.Int("m", 100, "Magnitude")
 	flag.Parse()
 	size := int(math.Pow10(*sizePar))
-	a := []int{}
-	for i := 0; i < size; i++ {
-	    a = append(a, rand.Intn(size))
-	}
 	//log.Printf("Before: %v", a)
-	insertionSort(a)
+	//insertionSort(randomSamples(size))
+	insertionSort(worstCase(size))
 	//log.Printf("After: %v", a)
 
 }
