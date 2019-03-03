@@ -13,6 +13,23 @@ func trackTime(start time.Time, name string, size int) {
 	log.Printf("%s of %d took %s", name, size, elapsed)
 }
 
+func mergeSort(a []int) {
+	doMergeSort(a, 0, len(a))
+}
+
+func doMergeSort(a []int, p, r int) {
+	if p < r {
+		q := (p + r) / 2
+		doMergeSort(a, p, q)
+		doMergeSort(a, q + 1, r)
+		merge(a, p, q, r)
+	}
+}
+
+func merge(a []int, p, q, r int) {
+
+}
+
 func insertionSort(a []int) {
 	defer trackTime(time.Now(), "insertionSort", len(a))
 	for i := 1; i < len(a); i++ {
@@ -61,8 +78,10 @@ func main() {
 	flag.Parse()
 	size := int(math.Pow10(*sizePar))
 	//log.Printf("Before: %v", a)
-	//insertionSort(randomSamples(size))
+	insertionSort(randomSamples(size))
 	insertionSort(worstCase(size))
+	insertionSort(bestCase(size))
+
 	//log.Printf("After: %v", a)
 
 }
